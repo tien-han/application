@@ -1,0 +1,20 @@
+/*---------------Button Styles---------------*/
+button.applyNow {
+    background-color: #92c744;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+
+button.applyNow:hover {
+    background-color: #92c744;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    color: white;
+}
