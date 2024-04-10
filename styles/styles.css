@@ -29,3 +29,8 @@ nav {
     margin: 0;
     border-bottom: 100px solid #e8e8e8;
 }
+
+.team-photo {
+    background: url(../images/DRG_Team_HD.jpg) no-repeat center;
+    border-radius: 10px;
+}
