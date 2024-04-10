@@ -2,6 +2,8 @@
 /**
  * 328/application/index.php
  * @author Tien Han
+ * @date 4/10/2024
+ * @description Routing for the website is defined here.
  * @version 1.0
  */
 

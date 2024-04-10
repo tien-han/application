@@ -1,3 +1,28 @@
+/*
+    @author: Tien Han
+    @date: 4/10/2024
+    @description: Styles for the job application webpage (SDEV328 Job App I).
+ */
+
+/*---------------Global Styles---------------*/
+nav {
+    background-color: #ffffff;
+}
+
+/*---------------Background/Image Styles---------------*/
+.job-description {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 0;
+    border-bottom: 100px solid #e8e8e8;
+}
+
+.team-photo {
+    background: url(../images/DRG_Team_HD.jpg) no-repeat center;
+    border-radius: 5px;
+    background-size: cover;
+}
+
 /*---------------Button Styles---------------*/
 button.applyNow {
     background-color: #92c744;
@@ -17,20 +42,4 @@ button.applyNow:hover {
     background-color: #92c744;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     color: white;
-}
-
-nav {
-    background-color: #ffffff;
-}
-
-.job-description {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin: 0;
-    border-bottom: 100px solid #e8e8e8;
-}
-
-.team-photo {
-    background: url(../images/DRG_Team_HD.jpg) no-repeat center;
-    border-radius: 10px;
 }
