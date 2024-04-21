@@ -35,10 +35,36 @@
     });
 
     //The form for gathering experience
-    $f3-> route('GET /experience', function() {
-        //Render a view page
-        $view = new Template();
-        echo $view->render('views/form-experience.html');
+    $f3-> route('GET|POST /experience', function($f3) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //Get submitted form data
+            $fname = $_POST['fname'];
+            $lname = $_POST['lname'];
+            $email = $_POST['email'];
+            $state = $_POST['state'];
+            $phone = $_POST['phone'];
+
+            //Save any values that have been entered
+            if (!empty($fname)) {
+                $f3->set('SESSION.fname', $fname);
+            }
+            if (!empty($lname)) {
+                $f3->set('SESSION.lname', $lname);
+            }
+            if (!empty($email)) {
+                $f3->set('SESSION.email', $email);
+            }
+            if (!empty($state)) {
+                $f3->set('SESSION.state', $state);
+            }
+            if (!empty($phone)) {
+                $f3->set('SESSION.phone', $phone);
+            }
+
+            //Render a view page
+            $view = new Template();
+            echo $view->render('views/form-experience.html');
+        }
     });
 
     //The mailing list
