@@ -17,15 +17,18 @@
     //Instantiate the F3 Base class (Fat-Free)
     $f3 = Base::instance();
 
+    //Start F3 session (equivalent to PHP $_SESSION)
+    new Session();
+
     //Define a default route
-    $f3-> route('GET /', function() {
+    $f3->route('GET /', function() {
         //Render a view page
         $view = new Template();
         echo $view->render('views/home.html');
     });
 
     //The form for gathering personal information
-    $f3-> route('GET /personal-information', function() {
+    $f3->route('GET|POST /personal-information', function() {
         //Render a view page
         $view = new Template();
         echo $view->render('views/form-personal-information.html');
