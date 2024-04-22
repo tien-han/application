@@ -12,10 +12,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--
-        Note: We have to link our images/files as styles/styles.css instead of ../styles/styles.css because when the site is
-        live, we're searching for files from our root directory.
-    -->
     <!--  Favicon -->
     <link rel="icon" type="image/x-icon" href="images/icons8-mine-64.png">
     <!--Bootstrap CDN-->
@@ -27,46 +23,78 @@
 </head>
 
 <body>
-<!--  Navbar  -->
-<nav class="navbar navbar-expand-lg navbar-light sticky-top">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="text-reset text-decoration-none" type="button" href="https://tienthan.greenriverdev.com/328/application">
-                        <h5>Deep Rock Galactic</h5>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="text-reset text-decoration-none" type="button" href="https://tienthan.greenriverdev.com/328/application">
-                        <h4>Engineer (Full-time role, in person)</h4>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <h6>Hoxxes IV, Paid per mission</h6>
-                </li>
-            </ul>
-            <a type="button" class="ms-auto" href="apply/personal-information"><button class="applyNow" type="submit">APPLY NOW</button></a>
+    <!--  Navbar  -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="text-reset text-decoration-none" type="button" href="https://tienthan.greenriverdev.com/328/application">
+                            <h5>Deep Rock Galactic</h5>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text-reset text-decoration-none" type="button" href="https://tienthan.greenriverdev.com/328/application">
+                            <h4>Engineer (Full-time role, in person)</h4>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <h6>Hoxxes IV, Paid per mission</h6>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <div class="container-fluid form-container">
+        <h1>Experience</h1>
+        <hr>
+
+        <!--Experience Form-->
+        <form action="experience" method="post">
+            <div class="row">
+                <div class="col-8">
+                    <label for="biography" class="form-label"><b>Biography</b></label>
+                    <textarea class="form-control" name="biography" id="biography" rows="9" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."></textarea>
+                </div>
+                <div class="col-4">
+                    <label for="github" class="form-label"><b>Github Link</b></label>
+                    <input class="form-control" name="github" id="github" type="text" placeholder="github.com/my_github">
+
+                    <!--Years of Experience Radio buttons-->
+                    <p class="form-label mt-3 mb-0"><b>Years Experience</b></p>
+                    <input type="radio" id="0-2" name="years_experience" checked="checked">
+                    <label class="me-3" for="0-2" class="form-label">0-2</label>
+                    <input type="radio" id="2-4" name="years_experience">
+                    <label class="me-3" for="2-4" class="form-label">2-4</label>
+                    <input type="radio" id="4+" name="years_experience">
+                    <label class="me-3" for="4+" class="form-label">4+</label>
+
+                    <!--Years of Experience Radio buttons-->
+                    <p class="form-label mt-3 mb-0"><b>Willing to Relocate</b></p>
+                    <input type="radio" id="yes" name="relocate" checked="checked">
+                    <label class="me-3" for="yes" class="form-label">Yes</label>
+                    <input type="radio" id="no" name="relocate">
+                    <label class="me-3" for="no" class="form-label">No</label>
+                    <input type="radio" id="maybe" name="relocate">
+                    <label class="me-3" for="maybe" class="form-label">Maybe</label>
+
+                    <div class="d-grid mt-3">
+                        <a type="button" href="mailing-list">
+                            <button class="applyNow btn-block w-100" type="submit">Next ></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</nav>
 
-<div class="container-fluid job-description p-5">
-    <h1>Experience Form</h1>
-
-    <div class="d-flex justify-content-center">
-        <a type="button" href="mailing-list">
-            <button class="applyNow" type="submit">Next ></button>
-        </a>
-    </div>
-</div>
-
-<!--  Scripts  -->
-<!--  Bootstrap CDN  -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!--  Scripts  -->
+    <!--  Bootstrap CDN  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
