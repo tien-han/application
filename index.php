@@ -68,11 +68,18 @@
     });
 
     //The mailing list
-    $f3-> route('GET /mailing-list', function() {
+    $f3-> route('GET|POST /mailing-list', function() {
         //Render a view page
         $view = new Template();
         echo $view->render('views/mailing-list.html');
     });
+
+//The Summary Page
+$f3-> route('GET|POST /summary', function() {
+    //Render a view page
+    $view = new Template();
+    echo $view->render('views/summary-page.html');
+});
 
     //Run Fat-Free
     $f3->run();

@@ -12,10 +12,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--
-        Note: We have to link our images/files as styles/styles.css instead of ../styles/styles.css because when the site is
-        live, we're searching for files from our root directory.
-    -->
     <!--  Favicon -->
     <link rel="icon" type="image/x-icon" href="images/icons8-mine-64.png">
     <!--Bootstrap CDN-->
@@ -50,13 +46,96 @@
                     <h6>Hoxxes IV, Paid per mission</h6>
                 </li>
             </ul>
-            <a type="button" class="ms-auto" href="apply/personal-information"><button class="applyNow" type="submit">APPLY NOW</button></a>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid job-description p-5">
-    <h1>Mailing List</h1>
+<div class="container-fluid form-container">
+    <h1>Job Openings Mailing Lists</h1>
+    <hr>
+
+    <!--Job Openings and Mailing Lists Form-->
+    <form action="summary" method="post">
+        <div class="row">
+            <p><b>Software Development Jobs</b></p>
+        </div>
+        <!--Job Openings Checkboxes-->
+        <div class="row ps-3 mb-2">
+            <div class="col form-check">
+                <input class="form-check-input" type="checkbox" value="javaScript" id="javaScript" name="job[]" checked>
+                <label class="form-check-label" for="javaScript">JavaScript</label>
+            </div>
+            <div class="col form-check">
+                <input class="form-check-input" type="checkbox" value="php" id="php" name="job[]" checked>
+                <label class="form-check-label" for="php">PHP</label>
+            </div>
+            <div class="col form-check">
+                <input class="form-check-input" type="checkbox" value="java" id="java" name="job[]" checked>
+                <label class="form-check-label" for="java">Java</label>
+            </div>
+            <div class="col form-check">
+                <input class="form-check-input" type="checkbox" value="python" id="python" name="job[]" checked>
+                <label class="form-check-label" for="python">Python</label>
+            </div>
+        </div>
+        <div class="row ps-3 mb-2">
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="html" id="html" name="job[]" checked>
+                <label class="form-check-label" for="html">HTML</label>
+            </div>
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="css" id="css" name="job[]" checked>
+                <label class="form-check-label" for="css">CSS</label>
+            </div>
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="reactJS" id="reactJS" name="job[]" checked>
+                <label class="form-check-label" for="reactJS">ReactJS</label>
+            </div>
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="nodeJs" id="nodeJs" name="job[]" checked>
+                <label class="form-check-label" for="nodeJs">NodeJs</label>
+            </div>
+        </div>
+        <div class="row">
+            <p><b>Industry Verticals</b></p>
+        </div>
+        <!--Industry Verticals Checkboxes-->
+        <div class="row ps-3 mb-2">
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="saas" id="saas" name="vertical[]" checked>
+                <label class="form-check-label" for="saas">SaaS</label>
+            </div>
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="health" id="health" name="vertical[]" checked>
+                <label class="form-check-label" for="health">Health tech</label>
+            </div>
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="ag" id="ag" name="vertical[]" checked>
+                <label class="form-check-label" for="ag">Ag tech</label>
+            </div>
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="hr" id="hr" name="vertical[]" checked>
+                <label class="form-check-label" for="hr">HR tech</label>
+            </div>
+        </div>
+        <div class="row ps-3 mb-2">
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="industrial" id="industrial" name="vertical[]" checked>
+                <label class="form-check-label" for="industrial">Industrial tech</label>
+            </div>
+            <div class="col-3 form-check">
+                <input class="form-check-input" type="checkbox" value="cybersecurity" id="cybersecurity" name="vertical[]" checked>
+                <label class="form-check-label" for="cybersecurity">Cybersecurity</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col d-grid me-0">
+                <button class="applyNow btn-block w-100" type="submit">Next ></button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <!--  Scripts  -->
