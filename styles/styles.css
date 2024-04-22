@@ -1,7 +1,7 @@
 /*
     @author: Tien Han
-    @date: 4/10/2024
-    @description: Styles for the job application webpage (SDEV328 Job App I).
+    @date: 4/21/2024
+    @description: Styles for the job application webpage (SDEV328 Job App I & Job App II).
  */
 
 /*---------------Global Styles---------------*/
@@ -27,6 +27,14 @@ nav {
     background-color: #f9f9f9;
     padding: 20px;
     margin: 0;
+}
+
+.form-details {
+    border-color: lightgrey;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: thin;
+    padding: 5px;
 }
 
 /*---------------Button Styles---------------*/

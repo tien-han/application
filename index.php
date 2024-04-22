@@ -2,9 +2,8 @@
 /**
  * 328/application/index.php
  * @author Tien Han
- * @date 4/10/2024
+ * @date 4/21/2024
  * @description Routing for the website is defined here.
- * @version 1.0
  */
 
     //Turn on error reporting
@@ -17,9 +16,6 @@
     //Instantiate the F3 Base class (Fat-Free)
     $f3 = Base::instance();
 
-    //Start F3 session (equivalent to PHP $_SESSION)
-    new Session();
-
     //Define a default route
     $f3->route('GET /', function() {
         //Render a view page
@@ -28,14 +24,7 @@
     });
 
     //The form for gathering personal information
-    $f3->route('GET|POST /personal-information', function() {
-        //Render a view page
-        $view = new Template();
-        echo $view->render('views/form-personal-information.html');
-    });
-
-    //The form for gathering experience
-    $f3-> route('GET|POST /experience', function($f3) {
+    $f3->route('GET|POST /personal-information', function($f3) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Get submitted form data
             $fname = $_POST['fname'];
@@ -61,25 +50,73 @@
                 $f3->set('SESSION.phone', $phone);
             }
 
-            //Render a view page
-            $view = new Template();
-            echo $view->render('views/form-experience.html');
+            //Redirect to the experience form page
+            $f3->reroute("experience");
         }
+
+        //Render a view page
+        $view = new Template();
+        echo $view->render('views/form-personal-information.html');
+    });
+
+    //The form for gathering experience
+    $f3-> route('GET|POST /experience', function($f3) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //Get submitted form data
+            $biography = $_POST['biography'];
+            $github = $_POST['github'];
+            $experience = $_POST['years_experience'];
+            $relocate = $_POST['relocate'];
+
+            //Save any values that have been entered
+            if (!empty($biography)) {
+                $f3->set('SESSION.biography', $biography);
+            }
+            if (!empty($github)) {
+                $f3->set('SESSION.github', $github);
+            }
+            if (!empty($experience)) {
+                $f3->set('SESSION.experience', $experience);
+            }
+            if (!empty($relocate)) {
+                $f3->set('SESSION.relocate', $relocate);
+            }
+
+            //Redirect to the mailing list
+            $f3->reroute("mailing-list");
+        }
+        //Render a view page
+        $view = new Template();
+        echo $view->render('views/form-experience.html');
     });
 
     //The mailing list
-    $f3-> route('GET|POST /mailing-list', function() {
+    $f3-> route('GET|POST /mailing-list', function($f3) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //Get submitted form data
+            $jobAndMailingLists = array_merge($_POST['job'], $_POST['vertical']);
+            $mailing = implode(", ", $jobAndMailingLists);
+
+            //Save any values that have been entered
+            if (!empty($mailing)) {
+                $f3->set('SESSION.mailing', $mailing);
+            }
+
+            //Redirect to the summary page
+            $f3->reroute("summary");
+        }
+
         //Render a view page
         $view = new Template();
         echo $view->render('views/mailing-list.html');
     });
 
-//The Summary Page
-$f3-> route('GET|POST /summary', function() {
-    //Render a view page
-    $view = new Template();
-    echo $view->render('views/summary-page.html');
-});
+    //The Summary Page
+    $f3-> route('GET|POST /summary', function($f3) {
+        //Render a view page
+        $view = new Template();
+        echo $view->render('views/summary-page.html');
+    });
 
     //Run Fat-Free
     $f3->run();

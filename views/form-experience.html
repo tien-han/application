@@ -1,9 +1,7 @@
 <!--
-    @file: 328/application/views/form-personal-information.html
-    @description: Job application page where users can read a job listing and click an "Apply Now" button.
     @author: Tien Han
-    @date: 4/10/2024
-    @version: 1.0
+    @date: 4/21/2024
+    @description: Job application page where users fill in a form about their professional experience.
 -->
 <!doctype html>
 <html lang="en">
@@ -55,7 +53,7 @@
         <hr>
 
         <!--Experience Form-->
-        <form action="mailing-list" method="post">
+        <form action="#" method="post">
             <div class="row">
                 <div class="col-8">
                     <label for="biography" class="form-label"><b>Biography</b></label>
@@ -67,20 +65,20 @@
 
                     <!--Years of Experience Radio buttons-->
                     <p class="form-label mt-3 mb-0"><b>Years Experience</b></p>
-                    <input type="radio" id="0-2" name="years_experience" checked="checked">
+                    <input type="radio" id="0-2" name="years_experience" value="0-2" checked="checked">
                     <label class="me-3" for="0-2" class="form-label">0-2</label>
-                    <input type="radio" id="2-4" name="years_experience">
+                    <input type="radio" id="2-4" name="years_experience" value="2-4">
                     <label class="me-3" for="2-4" class="form-label">2-4</label>
-                    <input type="radio" id="4+" name="years_experience">
+                    <input type="radio" id="4+" name="years_experience" value="4+">
                     <label class="me-3" for="4+" class="form-label">4+</label>
 
-                    <!--Years of Experience Radio buttons-->
+                    <!--Willing to Relocate Radio buttons-->
                     <p class="form-label mt-3 mb-0"><b>Willing to Relocate</b></p>
-                    <input type="radio" id="yes" name="relocate" checked="checked">
+                    <input type="radio" id="yes" name="relocate" value="yes" checked="checked">
                     <label class="me-3" for="yes" class="form-label">Yes</label>
-                    <input type="radio" id="no" name="relocate">
+                    <input type="radio" id="no" name="relocate" value="no">
                     <label class="me-3" for="no" class="form-label">No</label>
-                    <input type="radio" id="maybe" name="relocate">
+                    <input type="radio" id="maybe" name="relocate" value="maybe">
                     <label class="me-3" for="maybe" class="form-label">Maybe</label>
 
                     <div class="d-grid mt-3">
