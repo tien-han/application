@@ -23,6 +23,12 @@ nav {
     background-size: cover;
 }
 
+.default-profile {
+    background: url(../images/profile-picture.png) no-repeat center;
+    border-radius: 5px;
+    background-size: contain;
+}
+
 .form-container {
     background-color: #f9f9f9;
     padding: 20px;
