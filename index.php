@@ -93,14 +93,24 @@
     //The mailing list
     $f3-> route('GET|POST /mailing-list', function($f3) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jobAndMailingLists = '';
+            $mailing = '';
+
             //Get submitted form data
-            $jobAndMailingLists = array_merge($_POST['job'], $_POST['vertical']);
-            $mailing = implode(", ", $jobAndMailingLists);
+            if ($_POST['job'] != null AND $_POST['vertical'] != null) {
+                $jobAndMailingLists = array_merge($_POST['job'], $_POST['vertical']);
+            } else if ($_POST['job'] != null) {
+                $jobAndMailingLists = $_POST['job'];
+            } else if ($_POST['vertical'] != null) {
+                $jobAndMailingLists = $_POST['vertical'];
+            }
+
+            if (gettype($jobAndMailingLists) == 'array') {
+                $mailing = implode(", ", $jobAndMailingLists);
+            }
 
             //Save any values that have been entered
-            if (!empty($mailing)) {
-                $f3->set('SESSION.mailing', $mailing);
-            }
+            $f3->set('SESSION.mailing', $mailing);
 
             //Redirect to the summary page
             $f3->reroute("summary");
