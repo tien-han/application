@@ -11,6 +11,7 @@
     error_reporting(E_ALL);
 
     //Check to see that a string is all alphabetic (no numbers)
+    //TODO: make sure that people can't just enter in a space
     function validName($string) {
         if (ctype_alpha($string)) {
             echo "Yes, the string is all alphabetic.";

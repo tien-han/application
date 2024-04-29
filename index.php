@@ -3,7 +3,7 @@
  * 328/application/index.php
  * @author Tien Han
  * @date 4/21/2024
- * @description Routing for the website is defined here.
+ * @description Routing for the website is defined here (this is the Controller).
  */
 
     //Turn on error reporting
@@ -12,6 +12,9 @@
 
     //Require the autoload file (for Composer)
     require_once('vendor/autoload.php');
+
+    //Require form validation code
+    require_once('model/validate.php');
 
     //Instantiate the F3 Base class (Fat-Free)
     $f3 = Base::instance();
@@ -33,25 +36,45 @@
             $state = $_POST['state'];
             $phone = $_POST['phone'];
 
+            $allValid = true;
+
             //Save any values that have been entered
+            //First name is required
             if (!empty($fname)) {
                 $f3->set('SESSION.fname', $fname);
+            } else {
+                $allValid = false;
             }
+
+            //Last name is required
             if (!empty($lname)) {
                 $f3->set('SESSION.lname', $lname);
+            } else {
+                $allValid = false;
             }
+
+            //Email is required
             if (!empty($email)) {
                 $f3->set('SESSION.email', $email);
+            } else {
+                $allValid = false;
             }
+
             if (!empty($state)) {
                 $f3->set('SESSION.state', $state);
             }
+
+            //Phone number is required
             if (!empty($phone)) {
                 $f3->set('SESSION.phone', $phone);
+            } else {
+                $allValid = false;
             }
 
             //Redirect to the experience form page
-            $f3->reroute("experience");
+            if ($allValid) {
+                $f3->reroute("experience");
+            }
         }
 
         //Render a view page
@@ -68,6 +91,8 @@
             $experience = $_POST['years_experience'];
             $relocate = $_POST['relocate'];
 
+            $allValid = true;
+
             //Save any values that have been entered
             if (!empty($biography)) {
                 $f3->set('SESSION.biography', $biography);
@@ -75,15 +100,22 @@
             if (!empty($github)) {
                 $f3->set('SESSION.github', $github);
             }
-            if (!empty($experience)) {
+
+            //Years of experience is required
+            if (empty($experience)) {
                 $f3->set('SESSION.experience', $experience);
+            } else {
+                $allValid = false;
             }
+
             if (!empty($relocate)) {
                 $f3->set('SESSION.relocate', $relocate);
             }
 
-            //Redirect to the mailing list
-            $f3->reroute("mailing-list");
+            if ($allValid) {
+                //Redirect to the mailing list
+                $f3->reroute("mailing-list");
+            }
         }
         //Render a view page
         $view = new Template();
