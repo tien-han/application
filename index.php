@@ -10,7 +10,7 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
 
-    //Require the autoload file
+    //Require the autoload file (for Composer)
     require_once('vendor/autoload.php');
 
     //Instantiate the F3 Base class (Fat-Free)
