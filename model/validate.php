@@ -1,23 +1,21 @@
 <?php
-/*
- * 328/application/model/validate.php
- * @author Tien Han
- * @date 4/28/2024
- * @description Validation for form responses.
- */
+    /*
+     * 328/application/model/validate.php
+     * @author Tien Han
+     * @date 5/5/2024
+     * @description Validation for form responses.
+     */
 
     //Turn on error reporting
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
 
+    //------------------------ Helper Methods ------------------------//
+
     //Check to see that a string is all alphabetic (no numbers)
-    //TODO: make sure that people can't just enter in a space
-    function validName($string) {
-        if (ctype_alpha($string)) {
-            echo "Yes, the string is all alphabetic.";
-        } else {
-            echo "No, the string is not all alphabetic.";
-        }
+    function validName($string): bool
+    {
+        return ctype_alpha($string);
     }
 
     //Check to see that a string is a valid url.
@@ -54,7 +52,7 @@
         }
     }
 
-    //------------------ Helper Methods ------------------//
+    //------------------------ Helper Methods ------------------------//
 
     //Clean up form responses
     function clean_form_responses($data) {

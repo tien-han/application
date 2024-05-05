@@ -1,10 +1,10 @@
 <?php
-/**
- * 328/application/index.php
- * @author Tien Han
- * @date 4/21/2024
- * @description Routing for the website is defined here (this is the Controller).
- */
+    /*
+     * 328/application/index.php
+     * @author Tien Han
+     * @date 5/5/2024
+     * @description Routing for the website is defined here (this is the Controller).
+     */
 
     //Turn on error reporting
     ini_set('display_errors', 1);
@@ -26,25 +26,33 @@
         echo $view->render('views/home.html');
     });
 
-    //The form for gathering personal information
-    $f3->route('GET|POST /personal-information', function($f3) {
+    //Our route to the form for gathering personal information
+    $f3->route('GET|POST /application-form/personal-information', function($f3) {
+        //If the user has submitted a post request (i.e. filled out the form)
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Get submitted form data
-            $fname = $_POST['fname'];
+            $firstName = $_POST['firstName'];
             $lname = $_POST['lname'];
             $email = $_POST['email'];
             $state = $_POST['state'];
             $phone = $_POST['phone'];
 
             $allValid = true;
+            $error = '';
 
-            //Save any values that have been entered
-            //First name is required
-            if (!empty($fname)) {
-                $f3->set('SESSION.fname', $fname);
+            //Perform validation on the submitted first name
+            if (!empty($firstName)) {
+                if (!validName($firstName)) {
+                    $allValid = false;
+                    $error = 'Please enter in an alphabetic first name!';
+                }
+                $f3->set('SESSION.firstName', $firstName);
             } else {
+                //First name is required; if nothing was entered, the user can not proceed
                 $allValid = false;
+                $error = 'Please enter your first name.';
             }
+            $f3->set('SESSION.firstNameError', $error);
 
             //Last name is required
             if (!empty($lname)) {
@@ -83,7 +91,7 @@
     });
 
     //The form for gathering experience
-    $f3-> route('GET|POST /experience', function($f3) {
+    $f3->route('GET|POST /application-form/experience', function($f3) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Get submitted form data
             $biography = $_POST['biography'];
@@ -123,13 +131,13 @@
     });
 
     //The mailing list
-    $f3-> route('GET|POST /mailing-list', function($f3) {
+    $f3->route('GET|POST /application-form/mailing-list', function($f3) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $jobAndMailingLists = '';
             $mailing = '';
 
             //Get submitted form data
-            if ($_POST['job'] != null AND $_POST['vertical'] != null) {
+            if ($_POST['job'] != null and $_POST['vertical'] != null) {
                 $jobAndMailingLists = array_merge($_POST['job'], $_POST['vertical']);
             } else if ($_POST['job'] != null) {
                 $jobAndMailingLists = $_POST['job'];
@@ -154,7 +162,7 @@
     });
 
     //The Summary Page
-    $f3-> route('GET|POST /summary', function($f3) {
+    $f3->route('GET|POST /application-form/summary', function($f3) {
         //Render a view page
         $view = new Template();
         echo $view->render('views/summary-page.html');
