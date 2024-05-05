@@ -32,34 +32,42 @@
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Get submitted form data
             $firstName = $_POST['firstName'];
-            $lname = $_POST['lname'];
+            $lastName = $_POST['lastName'];
             $email = $_POST['email'];
             $state = $_POST['state'];
             $phone = $_POST['phone'];
 
             $allValid = true;
-            $error = '';
 
             //Perform validation on the submitted first name
+            $firstNameError = '';
             if (!empty($firstName)) {
                 if (!validName($firstName)) {
                     $allValid = false;
-                    $error = 'Please enter in an alphabetic first name!';
+                    $firstNameError = 'Please enter in an alphabetic first name!';
                 }
-                $f3->set('SESSION.firstName', $firstName);
             } else {
-                //First name is required; if nothing was entered, the user can not proceed
+                //First name is required
                 $allValid = false;
-                $error = 'Please enter your first name.';
+                $firstNameError = 'Please enter your first name.';
             }
-            $f3->set('SESSION.firstNameError', $error);
+            $f3->set('SESSION.firstName', $firstName);
+            $f3->set('SESSION.firstNameError', $firstNameError);
 
-            //Last name is required
-            if (!empty($lname)) {
-                $f3->set('SESSION.lname', $lname);
+            //Perform validation on the submitted last name
+            $lastNameError = '';
+            if (!empty($lastName)) {
+                if (!validName($lastName)) {
+                    $allValid = false;
+                    $lastNameError = 'Please enter in an alphabetic last name!';
+                }
             } else {
+                //Last name is required
                 $allValid = false;
+                $lastNameError = 'Please enter your last name.';
             }
+            $f3->set('SESSION.lastName', $lastName);
+            $f3->set('SESSION.lastNameError', $lastNameError);
 
             //Email is required
             if (!empty($email)) {
