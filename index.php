@@ -69,12 +69,20 @@
             $f3->set('SESSION.lastName', $lastName);
             $f3->set('SESSION.lastNameError', $lastNameError);
 
-            //Email is required
+            //Perform validation on the submitted email
+            $emailError = '';
             if (!empty($email)) {
-                $f3->set('SESSION.email', $email);
+                if (!validEmail($email)) {
+                    $allValid = false;
+                    $emailError = 'Please enter in a valid email!';
+                }
             } else {
+                //Email is required
                 $allValid = false;
+                $emailError = 'Please enter an email.';
             }
+            $f3->set('SESSION.email', $email);
+            $f3->set('SESSION.emailError', $emailError);
 
             if (!empty($state)) {
                 $f3->set('SESSION.state', $state);

@@ -70,17 +70,21 @@
                     <div class="row">
                         <!--Identifying Information-->
                         <div class="col">
-                            <input class="form-control" name="firstName" id="firstName" type="text" placeholder="Sarah" minlength="1" value="{{ @SESSION.firstName }}" required>
+                            <input class="form-control" name="firstName" id="firstName" type="text" placeholder="Sarah"
+                                   minlength="1" value="{{ @SESSION.firstName }}" required>
                         </div>
                         <div class="col">
-                            <input class="form-control" name="lastName" id="lastName" type="text" placeholder="Smith" minlength="1" value="{{ @SESSION.lastName }}" required>
+                            <input class="form-control" name="lastName" id="lastName" type="text" placeholder="Smith"
+                                   minlength="1" value="{{ @SESSION.lastName }}" required>
                         </div>
                     </div>
                     <div class="row">
                         <!--Contact Information-->
                         <div>
                             <label for="email" class="form-label mt-3"><b>Email*</b></label>
-                            <input class="form-control" name="email" id="email" type="text" placeholder="my_email@gmail.com" required>
+                            <span class="text-danger">{{ @SESSION.emailError }}</span>
+                            <input class="form-control" name="email" id="email" type="text"
+                                   placeholder="my_email@gmail.com" value="{{ @SESSION.email }}" required>
                         </div>
                     </div>
                 </div>

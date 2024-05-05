@@ -13,9 +13,13 @@
     //------------------------ Helper Methods ------------------------//
 
     //Check to see that a string is all alphabetic (no numbers)
-    function validName($string): bool
-    {
+    function validName($string): bool {
         return ctype_alpha($string);
+    }
+
+    //Check to see that an email address is valid
+    function validEmail($email): bool {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     //Check to see that a string is a valid url.
@@ -41,15 +45,6 @@
         $numbers = preg_replace($regex, '', $phoneNumber);
 
         //TODO: Perform validation on the numbers here
-    }
-
-    //Check to see that an email address is valid
-    function validEmail($email) {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "Email is valid.";
-        } else {
-            echo "Email is not valid.";
-        }
     }
 
     //------------------------ Helper Methods ------------------------//
