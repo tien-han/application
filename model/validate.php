@@ -33,6 +33,21 @@
         return false;
     }
 
+
+    //Check to see that a phone number is valid
+    function validPhone($phoneNumber): bool {
+        //Regex to only pull out numbers
+        $regex = '/[^0-9]+/';
+
+        //Get numerical values only out of the phone number
+        $numbers = preg_replace($regex, "", $phoneNumber);
+
+        if (strlen($numbers) == 10) {
+            return true;
+        }
+        return false;
+    }
+
     //Check to see that a string is a valid url.
     function validGithub($url) {
         if (filter_var($url, FILTER_VALIDATE_URL)) {
@@ -48,15 +63,6 @@
         //???
     }
 
-    //Check to see that a phone number is valid
-    function validPhone($phoneNumber) {
-        //Get numerical values only out of the phone number
-        //Regex to only pull out numbers
-        $regex = '[0-9]+';
-        $numbers = preg_replace($regex, '', $phoneNumber);
-
-        //TODO: Perform validation on the numbers here
-    }
 
     //------------------------ Helper Methods ------------------------//
 

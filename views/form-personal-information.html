@@ -1,6 +1,6 @@
 <!--
     @author: Tien Han
-    @date: 4/21/2024
+    @date: 5/5/2024
     @description: Job application form where users enter in their personal information.
 -->
 <!doctype html>
@@ -97,9 +97,11 @@
             <div class="row">
                 <div class="col-4">
                     <label for="state" class="form-label mt-3"><b>State</b></label>
+                    <span class="text-danger">{{ @SESSION.stateError }}</span>
                 </div>
                 <div class="col-4">
                     <label for="phone" class="form-label mt-3"><b>Phone*</b></label>
+                    <span class="text-danger">{{ @SESSION.phoneError }}</span>
                 </div>
             </div>
             <div class="row">
@@ -118,7 +120,7 @@
                     </select>
                 </div>
                 <div class="col">
-                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="222-333-4444" required>
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="222-333-4444" value="{{ @SESSION.phone }}" required>
                 </div>
                 <div class="col d-grid">
                     <button class="applyNow btn-block w-100" type="submit">Next ></button>

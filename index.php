@@ -98,16 +98,25 @@
             $f3->set('SESSION.state', $state);
             $f3->set('SESSION.stateError', $stateError);
 
-            //Phone number is required
+            //Perform validation on the submitted phone number
+            $phoneError = '';
             if (!empty($phone)) {
-                $f3->set('SESSION.phone', $phone);
+                if (!validPhone($phone)) {
+                    $allValid = false;
+                    $phoneError = 'Please enter in a valid phone number!';
+                }
             } else {
+                //Phone number is required
                 $allValid = false;
+                $phoneError = 'Please enter a phone number.';
             }
+            $f3->set('SESSION.phone', $phone);
+            $f3->set('SESSION.phoneError', $phoneError);
+
 
             //Redirect to the experience form page
             if ($allValid) {
-                $f3->reroute("experience");
+                $f3->reroute("/application-form/experience");
             }
         }
 
