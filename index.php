@@ -13,6 +13,9 @@
     //Require the autoload file (for Composer)
     require_once('vendor/autoload.php');
 
+    //Require data-layer
+    require_once('model/data-layer.php');
+
     //Require form validation code
     require_once('model/validate.php');
 
@@ -84,9 +87,16 @@
             $f3->set('SESSION.email', $email);
             $f3->set('SESSION.emailError', $emailError);
 
+            //Perform validation on the submitted state
+            $stateError = '';
             if (!empty($state)) {
-                $f3->set('SESSION.state', $state);
+                if (!validState($state)) {
+                    $allValid = false;
+                    $stateError = 'Please select a valid state or no state!';
+                }
             }
+            $f3->set('SESSION.state', $state);
+            $f3->set('SESSION.stateError', $stateError);
 
             //Phone number is required
             if (!empty($phone)) {
@@ -100,6 +110,9 @@
                 $f3->reroute("experience");
             }
         }
+
+        //Get all the states to populate the job application
+        $f3->set('states', getStates());
 
         //Render a view page
         $view = new Template();

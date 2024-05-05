@@ -22,6 +22,17 @@
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    //Check to see that the submitted state is valid (in our states array)
+    function validState($selectedState): bool {
+        $states = getStates();
+        foreach ($states as $state) {
+            if (ucwords($state) == ucwords($selectedState)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Check to see that a string is a valid url.
     function validGithub($url) {
         if (filter_var($url, FILTER_VALIDATE_URL)) {
