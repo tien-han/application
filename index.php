@@ -116,7 +116,7 @@
 
             //Redirect to the experience form page
             if ($allValid) {
-                $f3->reroute("/application-form/experience");
+                $f3->reroute("application-form/experience");
             }
         }
 
@@ -184,7 +184,7 @@
 
             if ($allValid) {
                 //Redirect to the mailing list
-                $f3->reroute("/application-form/mailing-list");
+                $f3->reroute("application-form/mailing-list");
             }
         }
 
@@ -201,6 +201,7 @@
 
     //The form for the mailing list
     $f3->route('GET|POST /application-form/mailing-list', function($f3) {
+        //If the user has submitted a post request (i.e. filled out the form)
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $jobAndMailingLists = '';
             $mailing = '';
@@ -222,7 +223,7 @@
             $f3->set('SESSION.mailing', $mailing);
 
             //Redirect to the summary page
-            $f3->reroute("summary");
+            $f3->reroute("application-form/summary");
         }
 
         //Render a view page
