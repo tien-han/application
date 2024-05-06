@@ -219,12 +219,17 @@
                 $mailing = implode(", ", $jobAndMailingLists);
             }
 
+            //TODO: Validate that the selected items in the checkboxes is valid (in our list)
+
             //Save any values that have been entered
             $f3->set('SESSION.mailing', $mailing);
 
             //Redirect to the summary page
             $f3->reroute("application-form/summary");
         }
+
+        //Get all mailing list items
+        $f3->set('mailingList', getMailingLists());
 
         //Render a view page
         $view = new Template();

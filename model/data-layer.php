@@ -78,3 +78,31 @@
             'Maybe'
         );
     }
+
+    //Get all the checkboxes for the mailing list
+    function getMailingLists(): array {
+        return array(
+            array(
+                'JavaScript',
+                'PHP',
+                'Java',
+                'Python'
+            ),
+            array(
+                'HTML',
+                'CSS',
+                'ReactJS',
+                'NodeJs'
+            ),
+            array(
+                'SaaS',
+                'Health tech',
+                'Ag tech',
+                'HR tech'
+            ),
+            array(
+                'Industrial tech',
+                'Cybersecurity',
+            )
+        );
+    }
