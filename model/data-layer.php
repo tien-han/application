@@ -60,3 +60,21 @@
             'wyoming'
         );
     }
+
+    //Get all the options for years of experience
+    function getYearsExperience(): array {
+        return array(
+            '0-2',
+            '2-4',
+            '4+'
+        );
+    }
+
+    //Get all the options for willingness to relocate
+    function getRelocation(): array {
+        return array(
+            'Yes',
+            'No',
+            'Maybe'
+        );
+    }

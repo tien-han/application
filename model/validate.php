@@ -10,7 +10,7 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
 
-    //------------------------ Helper Methods ------------------------//
+    //------------------------ Form Validation Methods ------------------------//
 
     //Check to see that a string is all alphabetic (no numbers)
     function validName($string): bool {
@@ -33,7 +33,6 @@
         return false;
     }
 
-
     //Check to see that a phone number is valid
     function validPhone($phoneNumber): bool {
         //Regex to only pull out numbers
@@ -48,26 +47,21 @@
         return false;
     }
 
+    //TODO: Use Regex to make sure GitHub is in the URL
     //Check to see that a string is a valid url.
-    function validGithub($url) {
-        if (filter_var($url, FILTER_VALIDATE_URL)) {
-            echo "Yes, the url is valid.";
-        } else {
-            echo "No, the url is not valid.";
-        }
+    function validGitHub($url): bool {
+        return filter_var($url, FILTER_VALIDATE_URL);
     }
 
-    //TODO: Check what this means
-    //Check to see that a string is a valid "value" property
-    function validExperience($string) {
-        //???
+    //Check to see that the selected experience is a valid "value" property
+    function validExperience($experience): bool {
+        $yearsExperience = getYearsExperience();
+        return in_array($experience, $yearsExperience);
     }
 
-
-    //------------------------ Helper Methods ------------------------//
-
-    //Clean up form responses
-    function clean_form_responses($data) {
-        return trim(stripslashes(htmlspecialchars($data)));
+    //Check to see that the selected relocation is a valid "value" property
+    function validRelocation($selectedRelocation): bool {
+        $relocationOptions = getRelocation();
+        return in_array($selectedRelocation, $relocationOptions);
     }
 ?>

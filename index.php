@@ -130,6 +130,7 @@
 
     //The form for gathering experience
     $f3->route('GET|POST /application-form/experience', function($f3) {
+        //If the user has submitted a post request (i.e. filled out the form)
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Get submitted form data
             $biography = $_POST['biography'];
@@ -139,36 +140,66 @@
 
             $allValid = true;
 
-            //Save any values that have been entered
+            //Save any text entered for biography
             if (!empty($biography)) {
                 $f3->set('SESSION.biography', $biography);
             }
+
+            //Perform validation on the submitted GitHub Link if any was submitted
+            $githubError = '';
             if (!empty($github)) {
+                if (!validGitHub($github)) {
+                    $allValid = false;
+                    $githubError = 'Please enter in a valid URL!';
+                }
                 $f3->set('SESSION.github', $github);
+                $f3->set('SESSION.githubError', $githubError);
             }
 
-            //Years of experience is required
-            if (empty($experience)) {
-                $f3->set('SESSION.experience', $experience);
+            //Perform validation on the submitted Years of Experience
+            $yearsExperienceError = '';
+            if (!empty($experience)) {
+                if (!validExperience($experience)) {
+                    $allValid = false;
+                    $yearsExperienceError = 'Please select one of the years of experience!';
+                }
             } else {
+                //Years of experience is required
                 $allValid = false;
+                $yearsExperienceError = 'Please select your years of experience.';
             }
+            $f3->set('SESSION.experience', $experience);
+            $f3->set('SESSION.experienceError', $yearsExperienceError);
 
+            //Perform validation on the submitted relocation selection if any was submitted
+            $relocationError = '';
             if (!empty($relocate)) {
+                if (!validRelocation($relocate)) {
+                    $allValid = false;
+                    $relocationError = 'Please select one of the options for Willing to Relocate!';
+                }
                 $f3->set('SESSION.relocate', $relocate);
+                $f3->set('SESSION.relocationError', $relocationError);
             }
 
             if ($allValid) {
                 //Redirect to the mailing list
-                $f3->reroute("mailing-list");
+                $f3->reroute("/application-form/mailing-list");
             }
         }
+
+        //Get all the years of experience to populate the job application
+        $f3->set('yearsExperience', getYearsExperience());
+
+        //Get all the options for willing to relocate to populate the job application
+        $f3->set('willingToRelocate', getRelocation());
+
         //Render a view page
         $view = new Template();
         echo $view->render('views/form-experience.html');
     });
 
-    //The mailing list
+    //The form for the mailing list
     $f3->route('GET|POST /application-form/mailing-list', function($f3) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $jobAndMailingLists = '';
