@@ -66,8 +66,7 @@
                         value="{{ @SESSION.github }}">
 
                     <!--Years of Experience Radio buttons-->
-                    <p class="form-label mt-3 mb-0"><b>Years Experience*</b></p>
-                    <span class="text-danger">{{ @SESSION.yearsExperienceError }}</span>
+                    <p class="form-label mt-3 mb-0"><b>Years Experience* </b><span class="text-danger">{{ @SESSION.experienceError }}</span></p>
                     <repeat group="{{ $yearsExperience }}" value="{{ @years }}">
                         <check if="{{ isset(@SESSION.experience) && @SESSION.experience == @years}}">
                             <true>
@@ -82,8 +81,7 @@
                     </repeat>
 
                     <!--Willing to Relocate Radio buttons-->
-                    <p class="form-label mt-3 mb-0"><b>Willing to Relocate</b></p>
-                    <span class="text-danger">{{ @SESSION.relocationError }}</span>
+                    <p class="form-label mt-3 mb-0"><b>Willing to Relocate* </b><span class="text-danger">{{ @SESSION.relocationError }}</span></p>
                     <repeat group="{{ $willingToRelocate}}" value="{{ @relocate }}">
                         <check if="{{ isset(@SESSION.relocate) && @SESSION.relocate == @relocate}}">
                             <true>
