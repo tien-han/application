@@ -39,22 +39,22 @@
     <form action="#" method="post">
         <div class="row">
             <div class="col form-details p-3">
-                <p>Name: {{ @SESSION.applicant->getFname() }} {{ @SESSION.applicant->getLname() }}</p>
+                <p>Name: {{ isset(@SESSION.applicant) ? @SESSION.applicant->getFname() : null }} {{ isset(@SESSION.applicant) ? @SESSION.applicant->getLname() : null }}</p>
                 <hr>
-                <p>Email: {{ @SESSION.applicant->getEmail() }}</p>
+                <p>Email: {{ isset(@SESSION.applicant) ? @SESSION.applicant->getEmail() : null }}</p>
                 <hr>
-                <p>State: {{ @SESSION.applicant->getState() }}</p>
+                <p>State: {{ isset(@SESSION.applicant) ? @SESSION.applicant->getState() : null }}</p>
                 <hr>
-                <p>Phone: {{ @SESSION.applicant->getPhone() }}</p>
+                <p>Phone: {{ isset(@SESSION.applicant) ? @SESSION.applicant->getPhone() : null }}</p>
                 <hr>
-                <p>Github Link: {{ @SESSION.applicant->getGithub() }}</p>
+                <p>Github Link: {{ isset(@SESSION.applicant) ? @SESSION.applicant->getGithub() : null }}</p>
                 <hr>
-                <p>Experience: {{ @SESSION.applicant->getExperience() }} years</p>
+                <p>Experience: {{ isset(@SESSION.applicant) ? @SESSION.applicant->getExperience() : null }} years</p>
                 <hr>
-                <p>Willing to Relocate: {{ @SESSION.applicant->getRelocate() }}</p>
+                <p>Willing to Relocate: {{ isset(@SESSION.applicant) ? @SESSION.applicant->getRelocate() : null }}</p>
                 <check if="{{ isset(@SESSION.applicant) && get_Class(@SESSION.applicant) == 'Applicant_SubscribedToLists' }}">
                     <hr>
-                    <p>Mailing Lists: {{ implode(", ", (array_filter(array_merge(@SESSION.applicant->getSelectionsJobs(), @SESSION.applicant->getSelectionVerticals())))) }}</p>
+                    <p>Mailing Lists: {{ isset(@SESSION.applicant) ? implode(", ", (array_filter(array_merge(@SESSION.applicant->getSelectionsJobs(), @SESSION.applicant->getSelectionVerticals())))) : null }}</p>
                 </check>
             </div>
             <!--  Image  -->
@@ -64,7 +64,7 @@
             <div class="col"></div>
             <div class="col">
                 <h4>Summary</h4>
-                <p>{{ @SESSION.applicant->getBio() }}</p>
+                <p>{{ isset(@SESSION.applicant) ? @SESSION.applicant->getBio() : null }}</p>
             </div>
         </div>
         <div class="row">

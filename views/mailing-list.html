@@ -46,16 +46,16 @@
         <div class="row ps-3 mb-2">
             <repeat group="{{ $mailingList[0] }}" value="{{ @mailingItem }}">
                 <div class="col form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $mailingItem }}" id="{{ $mailingItem }}" name="job[]">
-                    <label class="form-check-label" for="{{ $mailingItem }}">{{ $mailingItem }}</label>
+                    <input class="form-check-input" type="checkbox" value="{{ $mailingItem }}" id="{{ preg_replace('/\s+/', '', $mailingItem) }}" name="job[]">
+                    <label class="form-check-label" for="{{ preg_replace('/\s+/', '', $mailingItem) }}">{{ $mailingItem }}</label>
                 </div>
             </repeat>
         </div>
         <div class="row ps-3 mb-2">
             <repeat group="{{ $mailingList[1] }}" value="{{ @mailingItem }}">
                 <div class="col form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $mailingItem }}" id="{{ $mailingItem }}" name="job[]">
-                    <label class="form-check-label" for="{{ $mailingItem }}">{{ $mailingItem }}</label>
+                    <input class="form-check-input" type="checkbox" value="{{ $mailingItem }}" id="{{ preg_replace('/\s+/', '', $mailingItem) }}" name="job[]">
+                    <label class="form-check-label" for="{{ preg_replace('/\s+/', '', $mailingItem) }}">{{ $mailingItem }}</label>
                 </div>
             </repeat>
         </div>
@@ -66,16 +66,16 @@
         <div class="row ps-3 mb-2">
             <repeat group="{{ $mailingList[2] }}" value="{{ @mailingItem }}">
                 <div class="col form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $mailingItem }}" id="{{ $mailingItem }}" name="vertical[]">
-                    <label class="form-check-label" for="{{ $mailingItem }}">{{ $mailingItem }}</label>
+                    <input class="form-check-input" type="checkbox" value="{{ $mailingItem }}" id="{{ preg_replace('/\s+/', '', $mailingItem) }}" name="vertical[]">
+                    <label class="form-check-label" for="{{ preg_replace('/\s+/', '', $mailingItem) }}">{{ $mailingItem }}</label>
                 </div>
             </repeat>
         </div>
         <div class="row ps-3 mb-2">
             <repeat group="{{ $mailingList[3] }}" value="{{ @mailingItem }}">
                 <div class="col-3 form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $mailingItem }}" id="{{ $mailingItem }}" name="vertical[]">
-                    <label class="form-check-label" for="{{ $mailingItem }}">{{ $mailingItem }}</label>
+                    <input class="form-check-input" type="checkbox" value="{{ $mailingItem }}" id="{{ preg_replace('/\s+/', '', $mailingItem) }}" name="vertical[]">
+                    <label class="form-check-label" for="{{ preg_replace('/\s+/', '', $mailingItem) }}">{{ $mailingItem }}</label>
                 </div>
             </repeat>
         </div>
