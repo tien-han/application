@@ -16,9 +16,6 @@
     //Require data-layer
     require_once('model/data-layer.php');
 
-    //Require form validation code
-    require_once('model/validate.php');
-
     //Instantiate the F3 Base class (Fat-Free)
     $f3 = Base::instance();
     $controller = new Controller($f3);
