@@ -217,26 +217,15 @@
             echo "</pre>";
             //If the user has submitted a post request (i.e. filled out the form)
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $jobAndMailingLists = '';
-                $mailing = '';
-
-                //Get submitted form data
-                if ($_POST['job'] != null and $_POST['vertical'] != null) {
-                    $jobAndMailingLists = array_merge($_POST['job'], $_POST['vertical']);
-                } else if ($_POST['job'] != null) {
-                    $jobAndMailingLists = $_POST['job'];
-                } else if ($_POST['vertical'] != null) {
-                    $jobAndMailingLists = $_POST['vertical'];
+                if ($_POST['job'] != null) {
+                    $this->_f3->get('SESSION.applicant')->setSelectionsJobs($_POST['job']);
                 }
 
-                if (gettype($jobAndMailingLists) == 'array') {
-                    $mailing = implode(", ", $jobAndMailingLists);
+                if ($_POST['vertical'] != null) {
+                    $this->_f3->get('SESSION.applicant')->setSelectionVerticals($_POST['vertical']);
                 }
 
                 //TODO: Validate that the selected items in the checkboxes is valid (in our list)
-
-                //Save any values that have been entered
-                $this->_f3->set('SESSION.mailing', $mailing);
 
                 //Redirect to the summary page
                 $this->_f3->reroute("application-form/summary");

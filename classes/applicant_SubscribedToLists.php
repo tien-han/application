@@ -14,7 +14,7 @@
         {
             parent::__construct($fname, $lname, $email, $state, $phone);
 
-            $this->_selectionJobs = $jobs;
+            $this->_selectionsJobs = $jobs;
             $this->_selectionVerticals = $verticals;
         }
 
