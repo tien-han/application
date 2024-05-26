@@ -189,8 +189,15 @@
             }
 
             if ($allValid) {
-                //Redirect to the mailing list
-                $f3->reroute("application-form/mailing-list");
+                //Check to see if the user would like to see mailing lists
+                if ($f3->get('SESSION.optInML')) {
+                    //Redirect to the mailing list
+                    $f3->reroute("application-form/mailing-list");
+                }
+
+                //If the user isn't interested in any mailing lists
+                //Redirect to the summary page
+                $f3->reroute("application-form/summary");
             }
         }
 
