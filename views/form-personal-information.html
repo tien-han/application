@@ -57,11 +57,11 @@
                         <!--Identifying Information-->
                         <div class="col">
                             <input class="form-control" name="firstName" id="firstName" type="text" placeholder="Sarah"
-                                   minlength="1" value="{{ @SESSION.firstName }}" required>
+                                   minlength="1" value="{{ isset(@SESSION.applicant) ? @SESSION.applicant->getFname() : null }}" required>
                         </div>
                         <div class="col">
                             <input class="form-control" name="lastName" id="lastName" type="text" placeholder="Smith"
-                                   minlength="1" value="{{ @SESSION.lastName }}" required>
+                                   minlength="1" value="{{ isset(@SESSION.applicant) ? @SESSION.applicant->getLname() : null }}" required>
                         </div>
                     </div>
                     <div class="row">
@@ -70,7 +70,7 @@
                             <label for="email" class="form-label mt-3"><b>Email*</b></label>
                             <span class="text-danger">{{ @SESSION.emailError }}</span>
                             <input class="form-control" name="email" id="email" type="text"
-                                   placeholder="my_email@gmail.com" value="{{ @SESSION.email }}" required>
+                                   placeholder="my_email@gmail.com" value="{{ isset(@SESSION.applicant) ? @SESSION.applicant->getEmail() : null }}" required>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="col-4">
                     <select class="form-select" name="state" id="state">
                         <repeat group="{{ @states }}" value="{{ @state }}">
-                            <check if="{{ isset(@SESSION.state) && ucfirst(@SESSION.state) == ucfirst(@state) }}">
+                            <check if="{{ isset(@SESSION.applicant) && ucfirst(@SESSION.applicant->getState()) == ucfirst(@state) }}">
                                 <true>
                                     <option value="{{ ucfirst(@state) }}" selected>{{ ucfirst(@state) }}</option>
                                 </true>
@@ -106,13 +106,13 @@
                     </select>
                 </div>
                 <div class="col-4">
-                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="222-333-4444" value="{{ @SESSION.phone }}" required>
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="222-333-4444" value="{{ isset(@SESSION.applicant) ? @SESSION.applicant->getPhone() : null }}" required>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col-4">
                     <div class="form-label mt-3 mb-0 ms-0 pt-0 ps-0"><b>Mailing Lists</b></div>
-                    <check if="{{ isset(@SESSION.optInML) && @SESSION.optInML == true }}">
+                    <check if="{{ isset(@SESSION.applicant) && get_Class(@SESSION.applicant) == 'Applicant_SubscribedToLists' }}">
                         <true>
                             <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox" name="optInML" checked>

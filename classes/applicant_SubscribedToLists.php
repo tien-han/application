@@ -10,7 +10,7 @@
         private array $_selectionsJobs;
         private array $_selectionVerticals;
 
-        function __construct($fname, $lname, $email, $state, $phone, $jobs, $verticals)
+        function __construct($fname, $lname, $email, $state, $phone, $jobs=[null], $verticals=[null])
         {
             parent::__construct($fname, $lname, $email, $state, $phone);
 

@@ -46,7 +46,6 @@
                     $allValid = false;
                     $firstNameError = 'Please enter your first name.';
                 }
-                $this->_f3->set('SESSION.firstName', $firstName);
                 $this->_f3->set('SESSION.firstNameError', $firstNameError);
 
                 //Perform validation on the submitted last name
@@ -61,7 +60,6 @@
                     $allValid = false;
                     $lastNameError = 'Please enter your last name.';
                 }
-                $this->_f3->set('SESSION.lastName', $lastName);
                 $this->_f3->set('SESSION.lastNameError', $lastNameError);
 
                 //Perform validation on the submitted email
@@ -76,7 +74,6 @@
                     $allValid = false;
                     $emailError = 'Please enter an email.';
                 }
-                $this->_f3->set('SESSION.email', $email);
                 $this->_f3->set('SESSION.emailError', $emailError);
 
                 //Perform validation on the submitted state
@@ -87,7 +84,6 @@
                         $stateError = 'Please select a valid state or no state!';
                     }
                 }
-                $this->_f3->set('SESSION.state', $state);
                 $this->_f3->set('SESSION.stateError', $stateError);
 
                 //Perform validation on the submitted phone number
@@ -102,15 +98,17 @@
                     $allValid = false;
                     $phoneError = 'Please enter a phone number.';
                 }
-                $this->_f3->set('SESSION.phone', $phone);
                 $this->_f3->set('SESSION.phoneError', $phoneError);
 
                 //Record whether the applicant wants to sign up for mailing lists or not
                 if (isset($_POST['optInML'])) {
-                    $this->_f3->set('SESSION.optInML', true);
+                    //If the applicant would like to subscribe to mailing lists, create an Applicant_SubscribedToLists object
+                    $applicant = new Applicant_SubscribedToLists($firstName, $lastName, $email, $state, $phone);
                 } else {
-                    $this->_f3->set('SESSION.optInML', false);
+                    //If the applicant doesn't want to subscribe to mailing lists, create an Applicant object
+                    $applicant = new Applicant($firstName, $lastName, $email, $state, $phone);
                 }
+                $this->_f3->set('SESSION.applicant', $applicant);
 
                 //Redirect to the experience form page
                 if ($allValid) {
@@ -140,7 +138,8 @@
 
                 //Save any text entered for biography
                 if (!empty($biography)) {
-                    $this->_f3->set('SESSION.biography', $biography);
+                    $this->_f3->get('SESSION.applicant')->setBio($biography);
+                    //$this->_f3->set('SESSION.biography', );
                 }
 
                 //Perform validation on the submitted GitHub Link if any was submitted
