@@ -37,7 +37,7 @@
                 //Perform validation on the submitted first name
                 $firstNameError = '';
                 if (!empty($firstName)) {
-                    if (!validName($firstName)) {
+                    if (!Validate::validName($firstName)) {
                         $allValid = false;
                         $firstNameError = 'Please enter in an alphabetic first name!';
                     }
@@ -52,7 +52,7 @@
                 //Perform validation on the submitted last name
                 $lastNameError = '';
                 if (!empty($lastName)) {
-                    if (!validName($lastName)) {
+                    if (!Validate::validName($lastName)) {
                         $allValid = false;
                         $lastNameError = 'Please enter in an alphabetic last name!';
                     }
@@ -67,7 +67,7 @@
                 //Perform validation on the submitted email
                 $emailError = '';
                 if (!empty($email)) {
-                    if (!validEmail($email)) {
+                    if (!Validate::validEmail($email)) {
                         $allValid = false;
                         $emailError = 'Please enter in a valid email!';
                     }
@@ -82,7 +82,7 @@
                 //Perform validation on the submitted state
                 $stateError = '';
                 if (!empty($state)) {
-                    if (!validState($state)) {
+                    if (!Validate::validState($state)) {
                         $allValid = false;
                         $stateError = 'Please select a valid state or no state!';
                     }
@@ -93,7 +93,7 @@
                 //Perform validation on the submitted phone number
                 $phoneError = '';
                 if (!empty($phone)) {
-                    if (!validPhone($phone)) {
+                    if (!Validate::validPhone($phone)) {
                         $allValid = false;
                         $phoneError = 'Please enter in a valid phone number!';
                     }
@@ -146,7 +146,7 @@
                 //Perform validation on the submitted GitHub Link if any was submitted
                 $githubError = '';
                 if (!empty($github)) {
-                    if (!validGitHub($github)) {
+                    if (!Validate::validGitHub($github)) {
                         $allValid = false;
                         $githubError = 'Please enter in a valid URL!';
                     }
@@ -157,7 +157,7 @@
                 //Perform validation on the submitted Years of Experience
                 $yearsExperienceError = '';
                 if (!empty($experience)) {
-                    if (!validExperience($experience)) {
+                    if (!Validate::validExperience($experience)) {
                         $allValid = false;
                         $yearsExperienceError = 'Please select one of the years of experience!';
                     }
@@ -172,7 +172,7 @@
                 //Perform validation on the submitted relocation selection if any was submitted
                 $relocationError = '';
                 if (!empty($relocate)) {
-                    if (!validRelocation($relocate)) {
+                    if (!Validate::validRelocation($relocate)) {
                         $allValid = false;
                         $relocationError = 'Please select one of the options for Willing to Relocate!';
                     }
