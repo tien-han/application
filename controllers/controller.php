@@ -212,9 +212,6 @@
 
         function mailingListForm(): void
         {
-            echo "<pre>";
-            var_dump($this->_f3->get('SESSION.applicant'));
-            echo "</pre>";
             //If the user has submitted a post request (i.e. filled out the form)
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($_POST['job'] != null) {
@@ -245,12 +242,8 @@
 
         function summary(): void
         {
-            echo "<pre>";
-            var_dump($this->_f3->get('SESSION.applicant'));
-            echo "</pre>";
             //Render a view page
             $view = new Template();
             echo $view->render('views/summary-page.html');
-            //session_destroy();
         }
     }
