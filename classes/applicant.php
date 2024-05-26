@@ -12,10 +12,10 @@
         private string $_email;
         private string $_state;
         private string $_phone;
-        private string $_github;
+        private ?string $_github;
         private string $_experience;
         private string $_relocate;
-        private string $_bio;
+        private ?string $_bio;
 
         public function __construct($fname, $lname, $email, $state, $phone)
         {
@@ -76,42 +76,57 @@
             $this->_phone = $phone;
         }
 
-        public function getGithub(): string
+        public function getGithub(): ?string
         {
-            return $this->_github;
+            if (isset($this->_github)) {
+                return $this->_github;
+            }
+
+            return NULL;
         }
 
-        public function setGithub(string $github): void
+        public function setGithub(?string $github): void
         {
             $this->_github = $github;
         }
 
-        public function getExperience(): string
+        public function getExperience(): ?string
         {
-            return $this->_experience;
+            if (isset($this->_experience)) {
+                return $this->_experience;
+            }
+
+            return NULL;
         }
 
-        public function setExperience(string $experience): void
+        public function setExperience(?string $experience): void
         {
             $this->_experience = $experience;
         }
 
-        public function getRelocate(): string
+        public function getRelocate(): ?string
         {
-            return $this->_relocate;
+            if (isset($this->_relocate)) {
+                return $this->_relocate;
+            }
+            return NULL;
         }
 
-        public function setRelocate(string $relocate): void
+        public function setRelocate(?string $relocate): void
         {
             $this->_relocate = $relocate;
         }
 
-        public function getBio(): string
+        public function getBio(): ?string
         {
-            return $this->_bio;
+            if (isset($this->_bio)) {
+                return $this->_bio;
+            }
+
+            return NULL;
         }
 
-        public function setBio(string $bio): void
+        public function setBio(?string $bio): void
         {
             $this->_bio = $bio;
         }

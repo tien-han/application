@@ -139,7 +139,8 @@
                 //Save any text entered for biography
                 if (!empty($biography)) {
                     $this->_f3->get('SESSION.applicant')->setBio($biography);
-                    //$this->_f3->set('SESSION.biography', );
+                } else {
+                    $this->_f3->get('SESSION.applicant')->setBio(NULL);
                 }
 
                 //Perform validation on the submitted GitHub Link if any was submitted
@@ -149,8 +150,10 @@
                         $allValid = false;
                         $githubError = 'Please enter in a valid URL!';
                     }
-                    $this->_f3->set('SESSION.github', $github);
+                    $this->_f3->get('SESSION.applicant')->setGithub($github);
                     $this->_f3->set('SESSION.githubError', $githubError);
+                } else {
+                    $this->_f3->get('SESSION.applicant')->setGithub(NULL);
                 }
 
                 //Perform validation on the submitted Years of Experience
@@ -160,12 +163,13 @@
                         $allValid = false;
                         $yearsExperienceError = 'Please select one of the years of experience!';
                     }
+                    $this->_f3->get('SESSION.applicant')->setExperience($experience);
                 } else {
                     //Years of experience is required
                     $allValid = false;
                     $yearsExperienceError = 'Please select your years of experience.';
+                    $this->_f3->get('SESSION.applicant')->setExperience(NULL);
                 }
-                $this->_f3->set('SESSION.experience', $experience);
                 $this->_f3->set('SESSION.experienceError', $yearsExperienceError);
 
                 //Perform validation on the submitted relocation selection if any was submitted
@@ -175,13 +179,16 @@
                         $allValid = false;
                         $relocationError = 'Please select one of the options for Willing to Relocate!';
                     }
-                    $this->_f3->set('SESSION.relocate', $relocate);
+                    $this->_f3->get('SESSION.applicant')->setRelocate($relocate);
                     $this->_f3->set('SESSION.relocationError', $relocationError);
+                } else {
+                    $this->_f3->get('SESSION.applicant')->setRelocate(NULL);
                 }
 
                 if ($allValid) {
                     //Check to see if the user would like to see mailing lists
-                    if ($this->_f3->get('SESSION.optInML')) {
+                    $applicantType = $this->_f3->get('SESSION.applicant');
+                    if (get_Class($applicantType) == 'Applicant_SubscribedToLists') {
                         //Redirect to the mailing list
                         $this->_f3->reroute("application-form/mailing-list");
                     }
@@ -205,6 +212,9 @@
 
         function mailingListForm(): void
         {
+            echo "<pre>";
+            var_dump($this->_f3->get('SESSION.applicant'));
+            echo "</pre>";
             //If the user has submitted a post request (i.e. filled out the form)
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $jobAndMailingLists = '';
@@ -242,8 +252,12 @@
 
         function summary(): void
         {
+            echo "<pre>";
+            var_dump($this->_f3->get('SESSION.applicant'));
+            echo "</pre>";
             //Render a view page
             $view = new Template();
             echo $view->render('views/summary-page.html');
+            //session_destroy();
         }
     }

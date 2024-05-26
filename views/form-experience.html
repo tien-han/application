@@ -43,18 +43,19 @@
             <div class="row">
                 <div class="col-8">
                     <label for="biography" class="form-label"><b>Biography</b></label>
-                    <textarea class="form-control" name="biography" id="biography" rows="9" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">{{ @SESSION.biography }}</textarea>
+                    <textarea class="form-control" name="biography" id="biography" rows="9"
+                              placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">{{ isset(@SESSION.applicant) && @SESSION.applicant->getBio() != NULL ? @SESSION.applicant->getBio() : null }}</textarea>
                 </div>
                 <div class="col-4">
                     <label for="github" class="form-label"><b>GitHub Link</b></label>
                     <span class="text-danger">{{ @SESSION.githubError }}</span>
                     <input class="form-control" name="github" id="github" type="text" placeholder="github.com/my_github"
-                        value="{{ @SESSION.github }}">
+                        value="{{ isset(@SESSION.applicant) && @SESSION.applicant->getGithub() != NULL ? @SESSION.applicant->getGithub() : null }}">
 
                     <!--Years of Experience Radio buttons-->
                     <p class="form-label mt-3 mb-0"><b>Years Experience* </b><span class="text-danger">{{ @SESSION.experienceError }}</span></p>
                     <repeat group="{{ $yearsExperience }}" value="{{ @years }}">
-                        <check if="{{ isset(@SESSION.experience) && @SESSION.experience == @years}}">
+                        <check if="{{ isset(@SESSION.applicant) && @SESSION.applicant->getExperience() != NULL && @SESSION.applicant->getExperience() == @years}}">
                             <true>
                                 <input type="radio" id="{{ @years }}" name="years_experience" value="{{ @years }}" checked="checked" required>
                                 <label class="form-label me-3" for="{{ @years }}">{{ @years }}</label>
@@ -69,7 +70,7 @@
                     <!--Willing to Relocate Radio buttons-->
                     <p class="form-label mt-3 mb-0"><b>Willing to Relocate* </b><span class="text-danger">{{ @SESSION.relocationError }}</span></p>
                     <repeat group="{{ $willingToRelocate}}" value="{{ @relocate }}">
-                        <check if="{{ isset(@SESSION.relocate) && @SESSION.relocate == @relocate}}">
+                        <check if="{{ isset(@SESSION.applicant) && @SESSION.applicant->getRelocate() != null && @SESSION.applicant->getRelocate() == @relocate}}">
                             <true>
                                 <input type="radio" id="{{ @relocate }}" name="relocate" value="{{ @relocate }}" checked="checked" required>
                                 <label class="form-label me-3" for="{{ @relocate }}">{{ @relocate }}</label>
