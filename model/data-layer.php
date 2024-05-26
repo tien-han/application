@@ -1,6 +1,9 @@
 <?php
     /*
      * This is the Data Layer.
+     *
+     * @author Tien Han
+     * @date 5/26/2024
      */
 
     //Get US States for the personal information form in the Job Application app
