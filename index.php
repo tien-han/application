@@ -113,6 +113,12 @@
             $f3->set('SESSION.phone', $phone);
             $f3->set('SESSION.phoneError', $phoneError);
 
+            //Record whether the applicant wants to sign up for mailing lists or not
+            if (isset($_POST['optInML'])) {
+                $f3->set('SESSION.optInML', true);
+            } else {
+                $f3->set('SESSION.optInML', false);
+            }
 
             //Redirect to the experience form page
             if ($allValid) {

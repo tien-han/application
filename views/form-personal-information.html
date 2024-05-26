@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-4">
                     <select class="form-select" name="state" id="state">
                         <repeat group="{{ @states }}" value="{{ @state }}">
                             <check if="{{ isset(@SESSION.state) && ucfirst(@SESSION.state) == ucfirst(@state) }}">
@@ -105,10 +105,30 @@
                         </repeat>
                     </select>
                 </div>
-                <div class="col">
+                <div class="col-4">
                     <input type="tel" class="form-control" name="phone" id="phone" placeholder="222-333-4444" value="{{ @SESSION.phone }}" required>
                 </div>
-                <div class="col d-grid">
+            </div>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <div class="form-label mt-3 mb-0 ms-0 pt-0 ps-0"><b>Mailing Lists</b></div>
+                    <check if="{{ isset(@SESSION.optInML) && @SESSION.optInML == true }}">
+                        <true>
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="optInML" checked>
+                                Sign me up for job openings mailing lists!
+                            </label>
+                        </true>
+                        <false>
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="optInML">
+                                Sign me up for job openings mailing lists!
+                            </label>
+                        </false>
+                    </check>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4 d-grid mt-3">
                     <button class="applyNow btn-block w-100" type="submit">Next ></button>
                 </div>
             </div>
