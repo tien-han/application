@@ -39,22 +39,22 @@
     <form action="#" method="post">
         <div class="row">
             <div class="col form-details p-3">
-                <p>Name: {{ @SESSION.firstName }} {{ @SESSION.lastName }}</p>
+                <p>Name: {{ @SESSION.applicant->getFname() }} {{ @SESSION.applicant->getLname() }}</p>
                 <hr>
-                <p>Email: {{ @SESSION.email }}</p>
+                <p>Email: {{ @SESSION.applicant->getEmail() }}</p>
                 <hr>
-                <p>State: {{ @SESSION.state }}</p>
+                <p>State: {{ @SESSION.applicant->getState() }}</p>
                 <hr>
-                <p>Phone: {{ @SESSION.phone }}</p>
+                <p>Phone: {{ @SESSION.applicant->getPhone() }}</p>
                 <hr>
-                <p>Github Link: {{ @SESSION.github }}</p>
+                <p>Github Link: {{ @SESSION.applicant->getGithub() }}</p>
                 <hr>
-                <p>Experience: {{ @SESSION.experience }} years</p>
+                <p>Experience: {{ @SESSION.applicant->getExperience() }} years</p>
                 <hr>
-                <p>Willing to Relocate: {{ @SESSION.relocate }}</p>
-                <check if="{{ isset(@SESSION.optInML) && @SESSION.optInML == true }}">
+                <p>Willing to Relocate: {{ @SESSION.applicant->getRelocate() }}</p>
+                <check if="{{ isset(@SESSION.applicant) && get_Class(@SESSION.applicant) == 'Applicant_SubscribedToLists' }}">
                     <hr>
-                    <p>Mailing Lists: {{ @SESSION.mailing }}</p>
+                    <p>Mailing Lists: {{ implode(", ", (array_filter(array_merge(@SESSION.applicant->getSelectionsJobs(), @SESSION.applicant->getSelectionVerticals())))) }}</p>
                 </check>
             </div>
             <!--  Image  -->
@@ -64,7 +64,7 @@
             <div class="col"></div>
             <div class="col">
                 <h4>Summary</h4>
-                <p>{{ @SESSION.biography }}</p>
+                <p>{{ @SESSION.applicant->getBio() }}</p>
             </div>
         </div>
         <div class="row">

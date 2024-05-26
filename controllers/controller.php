@@ -219,10 +219,14 @@
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($_POST['job'] != null) {
                     $this->_f3->get('SESSION.applicant')->setSelectionsJobs($_POST['job']);
+                } else {
+                    $this->_f3->get('SESSION.applicant')->setSelectionsJobs([NULL]);
                 }
 
                 if ($_POST['vertical'] != null) {
                     $this->_f3->get('SESSION.applicant')->setSelectionVerticals($_POST['vertical']);
+                } else {
+                    $this->_f3->get('SESSION.applicant')->setSelectionVerticals([NULL]);
                 }
 
                 //TODO: Validate that the selected items in the checkboxes is valid (in our list)
