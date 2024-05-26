@@ -6,7 +6,35 @@
      * @date 5/26/2024
      */
 
-    class Applicant_SubscribedToLists
-    {
+    class Applicant_SubscribedToLists extends Applicant {
+        private array $_selectionsJobs;
+        private array $_selectionVerticals;
 
+        function __construct($fname, $lname, $email, $state, $phone, $jobs, $verticals)
+        {
+            parent::__construct($fname, $lname, $email, $state, $phone);
+
+            $this->_selectionJobs = $jobs;
+            $this->_selectionVerticals = $verticals;
+        }
+
+        public function getSelectionsJobs(): array
+        {
+            return $this->_selectionsJobs;
+        }
+
+        public function setSelectionsJobs(array $selectionsJobs): void
+        {
+            $this->_selectionsJobs = $selectionsJobs;
+        }
+
+        public function getSelectionVerticals(): array
+        {
+            return $this->_selectionVerticals;
+        }
+
+        public function setSelectionVerticals(array $selectionVerticals): void
+        {
+            $this->_selectionVerticals = $selectionVerticals;
+        }
     }
